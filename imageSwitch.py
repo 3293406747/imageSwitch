@@ -39,11 +39,16 @@ class ImageSwitch:
 		""" base64编码 """
 		return base64.b64encode(target).decode()
 
-	def switch(self, im, choice):
-		""" 图像转换link或base64 """
+	@staticmethod
+	def image(im):
+		""" 图像处理 """
 		io = BytesIO()
+		# im = im.convert("L")  # 图像灰度化
 		im.save(io, format="JPEG", quality=30, optimize=True, progressive=True)
-		s = self.b64encode(io.getvalue())
+		return io.getvalue()
+
+	def switch(self, s, choice):
+		""" 图像转换link或base64 """
 		if choice == "link":  # 转为链接
 			s = "data:image/png;base64," + s
 		elif choice == "base64":  # 转为base64
@@ -58,7 +63,8 @@ class ImageSwitch:
 		while True:
 			im = self.getIm()  # 获取剪切板图片
 			if isinstance(im, Image.Image):
-				s = self.switch(im, choice)  # 图像转换link或base64
+				b64 = self.b64encode(self.image(im))		# base64编码
+				s = self.switch(b64, choice)  # 图像转换link或base64
 				self.copy(s)  # 复制到剪切板
 				logger.info(f"剪切板图片转{self.__imageFlag}成功!!!")
 			time.sleep(2)
