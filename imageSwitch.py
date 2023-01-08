@@ -42,7 +42,7 @@ class ImageSwitch:
 	def switch(self, im, choice):
 		""" 图像转换link或base64 """
 		io = BytesIO()
-		im.save(io, format="PNG")
+		im.save(io, format="JPEG", quality=30, optimize=True, progressive=True)
 		s = self.b64encode(io.getvalue())
 		if choice == "link":  # 转为链接
 			s = "data:image/png;base64," + s
