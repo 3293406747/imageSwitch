@@ -68,6 +68,7 @@ pip install pyinstaller
 pyinstaller -F imageSwitch.py
 ```
 其中，-F 表示打包成单个可执行文件，imageSwitch.py 是程序入口文件名。
+
 3. 查找可执行文件
 
 打包完成后，在生成的 dist 文件夹中可以找到可执行文件，其文件名与程序入口文件名相同。
