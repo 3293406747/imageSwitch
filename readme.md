@@ -50,6 +50,29 @@ python imageSwitch.py --choice base64 --delay 3
 - `Program`：启动程序，并进行相应的配置，包括选择转换格式、轮询间隔等。
 - `main`：命令行入口，接受参数并调用 Program 类启动程序。
 
+## 打包成可执行程序
+
+如果你想将该 Python 程序打包成 Windows 可执行文件，可以使用 PyInstaller 工具进行打包。
+打包后的程序可以在 Windows 上运行，而无需安装 Python 环境。
+
+1. 安装 pyinstaller 工具
+
+在命令行中运行以下命令安装 pyinstaller 工具：
+```shell
+pip install pyinstaller
+```
+2. 执行打包命令
+
+在命令行中进入程序所在的文件夹，执行以下命令：
+```shell
+pyinstaller -F imageSwitch.py
+```
+其中，-F 表示打包成单个可执行文件，imageSwitch.py 是程序入口文件名。
+3. 查找可执行文件
+
+打包完成后，在生成的 dist 文件夹中可以找到可执行文件，其文件名与程序入口文件名相同。
+将该文件拷贝到需要使用的计算机上，即可双击打开程序。
+
 ## 注意事项
 - 该程序只能转换剪切板中的图片，无法转换文件或其他格式的图片。
 - 由于转换图片会消耗一定的系统资源，建议适当增加轮询间隔时间，避免程序运行占用过多系统资源。
